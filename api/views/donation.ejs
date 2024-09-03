@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+        .navbar, .modal-content {
+            background-color: #212529;
+        }
+        .btn-light {
+            color: #212529;
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+        }
+        .btn-light:hover {
+            background-color: #e2e6ea;
+            border-color: #dae0e5;
+        }
+        .modal-body {
+            padding: 2rem;
+        }
+        .section {
+            padding: 2rem 0;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Bucharest Bike Traffic</a>
+        <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#menuModal">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Acasă</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Recomandări</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Donează</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Despre mine</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- Hero Section -->
+        <section class="section text-center">
+            <h1 class="display-4 mb-4">Proiectul Meu | Bicicleta Electrică</h1>
+            <img src="placeholder-image.jpg" alt="Bicicleta Electrică" class="img-fluid">
+        </section>
+
+        <!-- Introduction Section -->
+        <section class="section">
+            <h2>Introducere</h2>
+            <p>
+                După mai bine de un an în care am mers exclusiv pe biciclete electrice, am adunat peste 10.000 de kilometri “electrici” și două victorii la categoria e-bike MTB. Am venit cu o idee pe care sper să o duc la bun sfârșit, cu sprijinul vostru.
+            </p>
+        </section>
+
+        <!-- Challenge Section -->
+        <section class="section">
+            <h2>Provocarea</h2>
+            <p>
+                În vara lui 2018 am căutat o bicicletă electrică de munte accesibilă ca preț și cu o echipare decentă. După căutări neîntrerupte, am realizat că bicicletele disponibile sunt scumpe și nu îndeplinesc cerințele mele.
+            </p>
+            <img src="placeholder-image.jpg" alt="Biciclete Electrnice" class="img-fluid mt-3">
+        </section>
+
+        <!-- Project Details Section -->
+        <section class="section">
+            <h2>Detalii Proiect</h2>
+            <p>
+                Ideea, designul cadrului și aranjarea componentelor îmi aparțin. Bicicleta va fi realizată în Bulgaria, cu excepția cadrului care va fi realizat în Turcia/China. Bateria este construită cu celule Panasonic și asamblată manual în Bulgaria.
+            </p>
+            <img src="placeholder-image.jpg" alt="Proiect Bicicletă" class="img-fluid mt-3">
+        </section>
+
+        <!-- Support Section -->
+        <section class="section">
+            <h2>Sprijinul vostru</h2>
+            <p>
+                Pentru a continua proiectul și a lansa bicicleta, am nevoie de aproape 3.000 de euro. Orice sumă donată va intra în lista pentru giveaway-ul unei biciclete electrice.
+            </p>
+            <p>
+                Dacă nu ai cont bancar și vrei să donezi folosind cardul altcuiva, te rog să obții acordul în prealabil. Dacă ai donat din greșeală sau te răzgândești, mă poți anunța pe mail și voi returna donația.
+            </p>
+            <p>
+                Îți mulțumesc mult, bucharestBIKEtraffic
+            </p>
+            <div class="text-center mt-4">
+                <a href="#" class="btn btn-light">Donează acum</a>
+            </div>
+        </section>
+
+        <!-- Updates Section -->
+        <section class="section">
+            <h2>Update-uri</h2>
+            <p><strong>27/10/2018:</strong> TNT Bulgaria nu își recunoaște vina și momentan așteptăm un răspuns final pentru partea financiară (350 euro) de recuperat din partea lor.</p>
+            <p><strong>29/10/2018:</strong> Am adunat 1043 de euro. Vă mulțumesc foarte mult celor care au donat. Voi centraliza o listă în curând.</p>
+            <p><strong>31/10/2018:</strong> După două nopți nedormite și zeci de mesaje cu chinezii, am reușit să facem un nou sample într-un timp foarte scurt.</p>
+            <p><strong>08/11/2018:</strong> Au venit două cadre pentru a nu risca să se rupă vreunul în transport.</p>
+            <p><strong>09/11/2018:</strong> Au fost puțin peste 1289 de euro donați de către voi și vă mulțumesc.</p>
+            <p><strong>11/11/2018:</strong> Prototipul bicicletei este în drum spre România. Urmează o perioadă de teste, filmări și documentare.</p>
+            <p><strong>05/12/2018:</strong> Din donații s-au strâns 2067 de euro.</p>
+            <p><strong>06/12/2018:</strong> Bicicletele sunt gata, le-am testat și merg strunț.</p>
+            <p><strong>22/12/2018:</strong> Din donații s-au strâns 2189 de euro. Extragerea se va face pe 1 ianuarie 2019.</p>
+        </section>
+    </div>
+
+    <!-- Full-Screen Menu Modal -->
+    <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-fullscreen" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menuModalLabel">Meniu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center">
+                    <a class="btn btn-light mb-3" href="/">Acasă</a>
+                    <a class="btn btn-light mb-3" href="#">Recomandări</a>
+                    <a class="btn btn-light mb-3" href="#">Donează</a>
+                    <a class="btn btn-light mb-3" href="#">Despre mine</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>

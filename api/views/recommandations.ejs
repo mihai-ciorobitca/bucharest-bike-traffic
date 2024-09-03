@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trafic - Bucharest Bike Traffic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .navbar, .modal-content {
+            background-color: #ffffff;
+        }
+        .navbar-brand, .nav-link {
+            color: #343a40;
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #007bff;
+        }
+        .btn-light {
+            color: #007bff;
+            background-color: #ffffff;
+            border: 1px solid #007bff;
+        }
+        .btn-light:hover {
+            background-color: #e9ecef;
+            border-color: #0056b3;
+        }
+        .section {
+            padding: 2rem 0;
+        }
+        .section img {
+            max-width: 100%;
+            height: auto;
+        }
+        .modal-content {
+            border-radius: 0;
+        }
+        .modal-header {
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Bucharest Bike Traffic</a>
+        <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#menuModal">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Acasă</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Recomandări</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Donează</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Despre mine</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <!-- Introduction Section -->
+        <section class="section">
+            <h1 class="display-4 mb-4">Trafic: Cum să Mergi cu Bicicleta în București</h1>
+            <p>
+                De ce e bine să faci un research înainte să ieși pe drumul public pe bicicletă? Pentru mulți, ți se vor spune lucruri, dar care, nu sunt mereu adevărate.
+            </p>
+            <img src="placeholder-image.jpg" alt="Trafic București" class="img-fluid mt-3">
+        </section>
+
+        <!-- Tips Section -->
+        <section class="section">
+            <h2>Ghid Scurt pentru Traficul din București</h2>
+            <p>
+                Un scurt ghid despre cum să mergi cu bicicleta în traficul din București poate face diferența între o experiență plăcută și una stresantă. 
+                Aici sunt câteva sfaturi utile:
+            </p>
+            <ul>
+                <li><strong>Planifică-ți Ruta:</strong> Verifică traseul înainte de a pleca, pentru a evita zonele aglomerate și a găsi cele mai sigure rute.</li>
+                <li><strong>Respectă Semnele de Trafic:</strong> Asigură-te că respecți toate semnele și regulile de circulație pentru a evita accidentele.</li>
+                <li><strong>Fii Vizibil:</strong> Poartă haine reflectorizante și folosește lumini pentru a fi vizibil în condiții de iluminare scăzută.</li>
+                <li><strong>Fii Aware de Punctele de Conflict:</strong> Fii atent la intersecții și alte zone unde traficul se poate aglomera.</li>
+            </ul>
+            <img src="placeholder-image.jpg" alt="Sfaturi Trafic" class="img-fluid mt-3">
+        </section>
+
+        <!-- Share Section -->
+        <section class="section text-center">
+            <h2>Împărtășește Acest Ghid</h2>
+            <p>
+                Dacă ai găsit aceste informații utile, nu ezita să le împărtășești cu alții!
+            </p>
+            <a href="https://twitter.com/intent/tweet?text=De%20ce%20e%20bine%20s%C4%83%20faci%20un%20research%20%C3%AEnainte%20s%C4%83%20iesi%20pe%20drumul%20public%20pe%20biciclet%C4%83%3F%20%23Trafic%20%23BucharestBikeTraffic&url=YOUR_URL_HERE" class="btn btn-light" target="_blank">Twitter</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_URL_HERE" class="btn btn-light" target="_blank">Facebook</a>
+        </section>
+    </div>
+
+    <!-- Full-Screen Menu Modal -->
+    <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-fullscreen" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menuModalLabel">Meniu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center">
+                    <a class="btn btn-light mb-3" href="/">Acasă</a>
+                    <a class="btn btn-light mb-3" href="#">Recomandări</a>
+                    <a class="btn btn-light mb-3" href="#">Donează</a>
+                    <a class="btn btn-light mb-3" href="#">Despre mine</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
