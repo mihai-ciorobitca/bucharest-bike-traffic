@@ -1,124 +1,359 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donation Page</title>
+    <link rel="icon" href="assets/favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        html,
         body {
-            background-color: #343a40;
-            color: #f8f9fa;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            background-color: white;
+            color: black;
+            flex-direction: column;
         }
-        .navbar, .modal-content {
-            background-color: #212529;
+
+        .content {
+            flex: 1;
+            overflow-y: auto;
         }
+
+        footer {
+            background-color: white;
+            padding: 1rem;
+            text-align: center;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            /*position: fixed;*/
+        }
+
+        .modal-fullscreen {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .modal-content {
+            height: 100%;
+            border: none;
+        }
+
+        .modal-header {
+            border-bottom: none;
+            background-color: white;
+            color: white;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        .modal-body .btn {
+            margin: 10px 0;
+            width: 90%;
+        }
+
+        .dropdown-menu {
+            width: 100%;
+        }
+
+        .dropdown-item {
+            text-align: center;
+        }
+
+        .dropdown-item:hover {
+            background-color: #495057;
+            color: #fff;
+        }
+
         .btn-light {
             color: #212529;
             background-color: #f8f9fa;
-            border: 1px solid #f8f9fa;
+            border-color: #ced4da;
         }
+
         .btn-light:hover {
+            color: #212529;
             background-color: #e2e6ea;
             border-color: #dae0e5;
         }
-        .modal-body {
-            padding: 2rem;
+
+        a,
+        i,
+        p {
+            color: black;
         }
-        .section {
-            padding: 2rem 0;
+
+        a:hover {
+            color: black;
         }
-        .section img {
-            max-width: 100%;
-            height: auto;
+
+        .custom-toggler.navbar-toggler {
+            border-color: white;
+        }
+
+        .custom-toggler .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
         }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Bucharest Bike Traffic</a>
-        <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#menuModal">
+    <nav class="navbar navbar-expand-lg shadow-sm text-white" style="background-color: white">
+        <a class="navbar-brand font-weight-bold" href="/">BucharestBikeTraffic</a>
+        <button class="navbar-toggler custom-toggler" type="button" data-toggle="modal" data-target="#menuModal">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item"><a class="nav-link" href="/">Acasă</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Recomandări</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Donează</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Despre mine</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Acasa</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="recommandationsDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Recomandari
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="recommandationsDropdown">
+                        <a class="dropdown-item dropdown-toggle" href="#" id="bicyclesDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Biciclete
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="bicyclesDropdown">
+                            <a class="dropdown-item" href="/recommandations/biciclete/100-500">Biciclete intre 100-500
+                                lei</a>
+                            <a class="dropdown-item" href="/recommandations/biciclete/1000-1500">Biciclete intre
+                                1000-1500 lei</a>
+                        </div>
+                        <a class="dropdown-item" href="/recommandations/trafic">Trafic</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/donation">Doneaza</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">Despre mine</a>
+                </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="container mt-5">
-        <!-- Hero Section -->
-        <section class="section text-center">
-            <h1 class="display-4 mb-4">Proiectul Meu | Bicicleta Electrică</h1>
-            <img src="placeholder-image.jpg" alt="Bicicleta Electrică" class="img-fluid">
-        </section>
+    <div class="content">
+        <div class="container mt-5">
+            <section class="section text-center">
+                <h1 class="display-4 mb-4">Proiectul Meu | Bicicleta Electrică</h1>
+            </section>
 
-        <!-- Introduction Section -->
-        <section class="section">
-            <h2>Introducere</h2>
-            <p>
-                După mai bine de un an în care am mers exclusiv pe biciclete electrice, am adunat peste 10.000 de kilometri “electrici” și două victorii la categoria e-bike MTB. Am venit cu o idee pe care sper să o duc la bun sfârșit, cu sprijinul vostru.
-            </p>
-        </section>
+            <section class="section">
+                <h2>Introducere</h2>
+                <p>
+                    Dupa mai bine de un an in care am mers exclusiv pe biciclete electrice,
+                    an in care am adunat peste 10.000 de kilometri “electrici”, sute de incarcari
+                    si doua victorii la categoria e-bike MTB [Macin si Pucioasa], am venit cu o
+                    idee pe care sper sa o duc la bun sfarsit, cu sprijinul vostru.
+                </p>
 
-        <!-- Challenge Section -->
-        <section class="section">
-            <h2>Provocarea</h2>
-            <p>
-                În vara lui 2018 am căutat o bicicletă electrică de munte accesibilă ca preț și cu o echipare decentă. După căutări neîntrerupte, am realizat că bicicletele disponibile sunt scumpe și nu îndeplinesc cerințele mele.
-            </p>
-            <img src="placeholder-image.jpg" alt="Biciclete Electrnice" class="img-fluid mt-3">
-        </section>
+                <p>
+                    In vara lui 2018 m-am gandit sa caut o bicicleta electrica de munte,
+                    accesibila ca pret si cu o echipare decenta careia sa ii fac review
+                    pentru ca oamenii sa guste si ei bucuria prin care trecusem eu cu bicicleta
+                    electrica de munte de la Eljoy. Trei saptamani de cautari mai tarziu, nu am gasit nimic.
+                </p>
 
-        <!-- Project Details Section -->
-        <section class="section">
-            <h2>Detalii Proiect</h2>
-            <p>
-                Ideea, designul cadrului și aranjarea componentelor îmi aparțin. Bicicleta va fi realizată în Bulgaria, cu excepția cadrului care va fi realizat în Turcia/China. Bateria este construită cu celule Panasonic și asamblată manual în Bulgaria.
-            </p>
-            <img src="placeholder-image.jpg" alt="Proiect Bicicletă" class="img-fluid mt-3">
-        </section>
+                <p>
+                    Am cautat in toate magazinele de biciclete din Bucuresti, iar cel mai
+                    ieftin MTB electric era in jur de 9.799 Lei. Am cautat prin supermarket-uri,
+                    nimic. Apoi pe marile magazine online: Emag sau evoMAG. Cel mai ieftin MTB
+                    electric la Emag costa 7.999 lei, cu mult peste bugetul multor oameni cu
+                    venituri medii din Romania. Aveam in minte ca bicicleta trebuie sa coste
+                    in jur de 4500 de lei sau 999 Euro. Bicicletele sub 5000 de lei din magazine
+                    nu sunt de munte. Sunt doar pliabile sau biciclete de oras, cu baterie/autonomie
+                    mica, design invechit, componente fara nume si rezistenta unui cub de gheata
+                    dupa 3 ore in soare in soare.
+                </p>
 
-        <!-- Support Section -->
-        <section class="section">
-            <h2>Sprijinul vostru</h2>
-            <p>
-                Pentru a continua proiectul și a lansa bicicleta, am nevoie de aproape 3.000 de euro. Orice sumă donată va intra în lista pentru giveaway-ul unei biciclete electrice.
-            </p>
-            <p>
-                Dacă nu ai cont bancar și vrei să donezi folosind cardul altcuiva, te rog să obții acordul în prealabil. Dacă ai donat din greșeală sau te răzgândești, mă poți anunța pe mail și voi returna donația.
-            </p>
-            <p>
-                Îți mulțumesc mult, bucharestBIKEtraffic
-            </p>
-            <div class="text-center mt-4">
-                <a href="#" class="btn btn-light">Donează acum</a>
-            </div>
-        </section>
+                <img src="assets/image1.png" alt="Bicicleta Electrică" class="img-fluid w-100">
+                <br>
+                <br>
+                <img src="assets/image2.png" alt="Bicicleta Electrică" class="img-fluid w-100">
+                <br>
+                <br>
+                <p>
+                    De aici si ideea mea de a face un MTB electric din experienta pe care am acumulat-o in 2 ani de
+                    research si 1 an de pedalat pe biciclete electrice.</p>
+                <p>Ideea, designul cadrului si aranjarea componentelor imi apartine. Bicicleta va fi realizata in
+                    Bulgaria, cu exceptia cadrului care va fi realizat in Turcia/China in functie de comanda.
+                    Bicicletele sunt asamblate si vopsite manual in Bulgaria fiind customizabile. Bateria este
+                    construita cu celule Panasonic in Bulgaria si asamblata manual, bucata cu bucata, impreuna cu
+                    controler-ul. Pentru cei ce nu stiu, pack-urile Li-Ion /Li-po sunt foarte problematice daca nu au o
+                    calitate superioara a sudurilor si celule de calitate riscand de la autonomie precara pana la un
+                    incendiu spontan ce poate duce la rani grave.</p>
+                <p>Motoarele BAFANG sunt comandate direct si totodata am obtinut acces cu acordul BAFANG la softul de
+                    manevrare a parametrilor pentru performante maxime din fiecare motor. Toate motoarele vor fi testate
+                    si calibrate impreuna cu bateria, inainte de livrare.</p>
+                <p>In acest moment specificatiile bicicletei stau cam asa:</p>
+                <p>Cadru aluminiu ~ 1.9kg, 29 inch cu baterie incorporata, din a 4 -a generatie de biciclete electrice
+                    cu bateria complet integrata, carcasa bateriei va fi vopsita in aceeasi culoare cu cadrul. Bateria
+                    nu este vizibila din exterior dar este accesibila cu cheie.</p>
+                <p>Motor BAFANG H600 cu 55Nm si peak power 500W / 35km/h max cu</p>
+                <p>unitate DP – E08 in stanga ghidonului.</p>
+                <p>Baterie cu celule Panasonic de 10.7Ah</p>
+                <p>Autonomie pe nivel maxim de asistenta, cu pedalare, 80 km</p>
+                <p>cu bateria mica. Autonomie testata nu declarata.</p>
+                <p>Furca SR Suntour XCR 32 100mm / Lockout / Rebound / Coil</p>
+                <p>Roti 29″ jante duble aluminiu cu butuc Shimano</p>
+                <p>Frane Shimano BR – M355 Hidraulice cu 180mm fata / 160 mm spate</p>
+                <p>Ghidon 690mm Aluminiu / Pipa scurta</p>
+                <p>Anvelope Continental X- King / Race king 2.2 sau 2.4</p>
+                <p>Transmisie 1×9 pinioane Shimano HG si deraior Shimano Alivio M4000</p>
+                <p>Foaie narrow – wide 36T</p>
+                <p>Mansoane cu lock-out</p>
+                <p>Culoare customizabila – la comanda bicicletei vei alege culoarea fara un cost extra. Initial vei avea
+                    in jur de 15 optiuni ( culori primare, tonuri), cu posibilitatea de a specifica culoarea in forma
+                    lucioasa/ mata / lucioasa metalizata. Ulterior vor fi disponibile si culori in combinatie +
+                    decaluri.</p>
+                <p>Primele 50 de biciclete vor fi editie limitata doar in metallic orange + decaluri si vin cu
+                    semnatura+logo bucharestBiketraffic si numerotatie 01/50 impreuna cu:</p>
+                <p>– baterie mai mare, de 13.4 Ah (bateria va fi de 14Ah)</p>
+                <p>– ciclocomputer (indisponibil)</p>
+                <p>– tricou orange bucharestBIKEtraffic (indisponibil)</p>
+                <p>– mansoane orange ( masoane in culoarea cadrului)</p>
+                <p> </p>
+                <p>Pretul bicicletei va fi de 3999 lei pentru precomanda + 30 eur transportul oriunde Romania cu livrare
+                    in 7 zile prin curierat de la “perioada de livrare”. Datorita precomenzilor + timpului de fabricare
+                    al cadrelor, estimez in jur de 30-60 de zile. </p>
+                <p> </p>
+                <p>Componentele au fost deja testate de mine pe un cadru similar construit de bulgari in luna august si
+                    au functionat absolut genial. Distanta de test a fost de 234 km.</p>
+                <p>In septembrie am terminat de desenat versiunea finala a cadrului impreuna cu masuratorile aferente +
+                    CAD necesar pentru realizare. In octombrie trebuia sa primesc in Bulgaria cadrul dupa ce am asteptat
+                    30 de zile de la comanda lui ( 10 zile realizare + 10 zile livrare + vamuire si verificari). Tot in
+                    octombrie am primit o veste proasta. Cei de la TNT Bulgaria au facut o mare gafa. Au tratat coletul
+                    cu neglijenta asa ca bascula spate a cadrului s-a rupt. Altfel, cadrul era foarte bine realizat,
+                    tratat termic si totodata partea de inbinare era foarte bine realizata, in special la baterie.
+                </p>
+                <image src="assets/image3.png" class="img-fluid w-100"></image>
+                <br><br>
+                <p>
+                    Acum trebuie sa astept inca o luna dupa un alt cadru, iar apoi montare componente + testare + review
+                    + altele. Din pacate resursele mele financiare s-au epuizat. Livrarea cadrului rupt cu avionul (400
+                    eur air mail TNT) + research + development + comanda vopselelor/ componentelor + un nou sample +
+                    livrarea noua cu avionul si o comanda ferma de cel putin 30 cadre + taxe pe care trebuie sa le
+                    platesc ca bicicleta sa fie reparata in garantie in cateva ateliere de biciclete inseamna costuri de
+                    peste 3500 de euro.</p>
+                <p>In teorie, ca bicicleta sa fie vanduta in magazine, marja de profit trebuia sa fie de minim 30%.
+                    Adica bicicleta sa coste 5200 de lei. Cu 2500 de lei mai ieftin decat cel mai ieftin MTB electric pe
+                    care l-am gasit, cu mult mai bun decat multe MTB-uri de brand si cu posibilitatea de a il customiza
+                    dupa bunul plac. Insa, departe de ideea mea in initiala din care apropo, nu scot profit. Deci, nici
+                    dupa 200 de biciclete bulgarii nu mi-ar recupera 10 la suta din banii pe care i-am cheltuit eu. Iar
+                    asteptarile mele sunt in jur de 50 de biciclete vandute intr-un an. Asa ca am luat alta cale;</p>
+                <p>Sprijinul vostru</p>
+                <p>Pentru a continua ce mi-am propus si a lansa bicicleta pana la sfarsitul lunii noiembrie, am nevoie
+                    de aproape 3.000 de euro.</p>
+                <p>Orice suma vei dona, vei intra in lista pentru giveaway-ul unei biciclete electrice in momentul in
+                    care voi strange toata suma. Vei alege tu ce bicicleta doresti, fie ca e o bicicleta de oras, fie ca
+                    e o bicicleta de munte, in momentul in care te voi nominaliza castigator. Pana acum am strans
+                    aproape 1000 de euro, au donat 72 de oameni, deci, sansele sunt destul de mari.</p>
+                </p>
+                <p>Bicicleta de oras este deja gata dar din pacate bicicleta de munte, nu. Bicicleta de oras va avea
+                    acelasi pret, se vor lansa impreuna, momentan este in teste in Bucuresti.
+                </p>
+                <image src="assets/image4.png" class="img-fluid w-100"></image>
+                <br>
+                <br>
+                <p>Mai jos poti dona cu orice metoda online. Toate donatiile sunt transparente si vor fi inregistrate cu
+                    date personale pentru a intra in giveaway-ul ce il voi filma in direct pe YouTube. Datele personale
+                    sunt stocate de PayPal si nu de mine dar voi tine cont de cele ale castigatorului pentru a ii da
+                    bicicleta.</p>
+                <p>Daca nu ai cont bancar si vrei sa donezi folosind cardul altcuiva, te rog sa obtii acordul in
+                    prealabil. Daca ai donat din greseala sau te razgandesti pana voi anunta public ca am strans toti
+                    banii, ma poti anunta pe mail si voi returna donatia, fara intrebari, indiferent de suma donata.
+                    Totodata daca ai sub 18 ani, te rog sa ai acordul parintilor pentru donatie pe care il voi cere in
+                    scris daca vei castiga bicicleta la giveaway. Daca nu poti dona nu e nici o problema, ma ajuta un
+                    share sau chiar o idee cum as putea sa numesc bicicleta de munte. Imi poti trimite orice sugestii
+                    sau intrebari pe e-mail la bucharestbikeprojects@gmail.com</p>
+                <p>Iti multumesc mult,
+                    bucharestBIKEtraffic</p>
+                <p>Update-uri </p>
+                <p>27/10/2018 – TNT Bulgaria nu isi recunoste vina si momentan asteptam un raspuns final pentru partea
+                    financiara (350 euro) de recuperat din partea lor pentru trasnportul defectuos.</p>
+                <p>29/10/2018 – Am adunat 1043 de euro. Va multumesc foarte mult celor cau au donat. Voi centraliza o
+                    lista in curand. Daca totusi aveti dubii in privinta donatiilor, voi raspunde cat de repede.</p>
+                <p>31/10/2018 – Dupa doua nopti nedormite si zeci de mesaje cu chinezii am reusit sa facem un nou sample
+                    intr-un timp foarte scurt. Il vor trimite in cursul zilei de astazi, cu avionul, alti 350 euro.
+                </p>
+                <image src="assets/image5.png" class="img-fluid w-100"></image>
+                <br><br>
+                <p>08/11/2018 Pana la urma au venit doua cadre pentru a nu risca sa se rupa vreunul in transport. De
+                    data asta am apelat la DHL, care, momentan sunt cam ciudati. Cadrele au ajuns in Bulgaria pentru
+                    asamblarea bicicletei, insa, vor nu stiu ce taxe vamale.
+                    Le-am platit. Acum astept sa ajunga in Varna cadrele din Sofia. Momentan nu stiu starea acestora.
+                    Cand aflu, postez.</p>
+                <p>09/11/2018 Au fost putin peste 1289 de euro donati de catre voi si va multumesc. O parte din ei
+                    (peste 500 euro) au fost donati cu platforma Tipee Stream. De la ei am incasat doar aproape 245 de
+                    euro. Restul ii astept pentru a plati macar transportul cadrelor.
+                </p>
+                <image src="assets/image6.png" class="img-fluid w-100"></image>
+                <br>
+                <br>
+                <image src="assets/image7.png" class="img-fluid w-100"></image>
+                <p>11/11/2018 – Prototipul bicicletei este in drum spre Romania. Urmeaza o perioada de teste, filmari si
+                    documentare. Voi anunta oficial in cel mult doua saptamani verdictul.</p>
+                <p>05/12/2018 – Din donatii s-au strans in 2067 de euro.</p>
+                <p>06/12/2018 – Bicicletele sunt gata, le-am testat si merg strunta.</p>
+                <p>MTB: https://www.eljoybikes.com/en/electric-bikes/eljoy-revolution</p>
+                <p>City Bike : https://www.eljoybikes.com/en/electric-bikes/eljoy-tempo-limited</p>
+                <p>22/12/2018 – Din donatii s-au strans in 2189 de euro. Extragerea se va face pe 1 ianuarie 2019. </p>
+            </section>
 
-        <!-- Updates Section -->
-        <section class="section">
-            <h2>Update-uri</h2>
-            <p><strong>27/10/2018:</strong> TNT Bulgaria nu își recunoaște vina și momentan așteptăm un răspuns final pentru partea financiară (350 euro) de recuperat din partea lor.</p>
-            <p><strong>29/10/2018:</strong> Am adunat 1043 de euro. Vă mulțumesc foarte mult celor care au donat. Voi centraliza o listă în curând.</p>
-            <p><strong>31/10/2018:</strong> După două nopți nedormite și zeci de mesaje cu chinezii, am reușit să facem un nou sample într-un timp foarte scurt.</p>
-            <p><strong>08/11/2018:</strong> Au venit două cadre pentru a nu risca să se rupă vreunul în transport.</p>
-            <p><strong>09/11/2018:</strong> Au fost puțin peste 1289 de euro donați de către voi și vă mulțumesc.</p>
-            <p><strong>11/11/2018:</strong> Prototipul bicicletei este în drum spre România. Urmează o perioadă de teste, filmări și documentare.</p>
-            <p><strong>05/12/2018:</strong> Din donații s-au strâns 2067 de euro.</p>
-            <p><strong>06/12/2018:</strong> Bicicletele sunt gata, le-am testat și merg strunț.</p>
-            <p><strong>22/12/2018:</strong> Din donații s-au strâns 2189 de euro. Extragerea se va face pe 1 ianuarie 2019.</p>
-        </section>
+
+        </div>
     </div>
 
-    <!-- Full-Screen Menu Modal -->
-    <div class="modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-fullscreen" role="document">
+    <footer id="mainFooter">
+        <div class="container py-2">
+            <div class="row justify-content-center">
+                <div class="col-lg-2 col-4 mb-3">
+                    <a class="text-dark" href="https://youtube.com/" style="cursor: pointer;">
+                        <i class="fab fa-2x fa-youtube"></i>
+                        <p>YouTube</p>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-4 mb-3">
+                    <a class="text-dark" href="https://facebook.com/" style="cursor: pointer;">
+                        <i class="fab fa-2x fa-facebook"></i>
+                        <p>Facebook</p>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-4 mb-3">
+                    <a class="text-dark" href="https://www.paypal.com/paypalme/" style="cursor: pointer;">
+                        <i class="fab fa-2x fa-paypal"></i>
+                        <p>PayPal</p>
+                    </a>
+                </div>
+            </div>
+            <p class="copyright py-2 mb-0">© 2024 Bucharest Bike Traffic</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade modal-fullscreen" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="menuModalLabel">Meniu</h5>
@@ -126,11 +361,20 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body d-flex flex-column align-items-center">
-                    <a class="btn btn-light mb-3" href="/">Acasă</a>
-                    <a class="btn btn-light mb-3" href="#">Recomandări</a>
-                    <a class="btn btn-light mb-3" href="#">Donează</a>
-                    <a class="btn btn-light mb-3" href="#">Despre mine</a>
+                <div class="modal-body">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="/">Acasă</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="recommandationsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recomandări</a>
+                            <div class="dropdown-menu" aria-labelledby="recommandationsDropdown">
+                                <a class="dropdown-item" href="#">Biciclete</a>
+                                <a class="dropdown-item" href="#">Trafic</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#">Donează</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Despre mine</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -140,4 +384,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
